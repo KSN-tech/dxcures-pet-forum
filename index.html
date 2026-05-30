@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DxCure Pet Skin Forum</title>
+    <meta
+      name="description"
+      content="A simple community forum for pet owners to discuss skin disease signs, care routines, and vet visit preparation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="top-strip">
+      <span>Pet owner community</span>
+      <span>Skin health discussions</span>
+      <span>Share experiences, not diagnoses</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="DxCure forum home">
+        <span class="brand-mark">DX</span>
+        <span>
+          <strong>DxCure Forum</strong>
+          <small>Pet skin care</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#topics">Topics</a>
+        <a href="#new-post">New Post</a>
+        <a href="#guide">Care Guide</a>
+      </nav>
+
+      <a class="header-button" href="#new-post">Start Discussion</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Community support for pet owners</p>
+          <h1>Discuss pet skin disease with people who understand the daily care.</h1>
+          <p>
+            Ask about symptoms, grooming routines, diet changes, clinic visits,
+            and recovery progress. This forum helps owners compare experiences
+            before speaking with a veterinarian.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#new-post">Ask a Question</a>
+            <a class="secondary-action" href="#topics">Browse Topics</a>
+          </div>
+          <dl class="hero-stats" aria-label="Forum highlights">
+            <div>
+              <dt data-topic-count>0</dt>
+              <dd>active discussions</dd>
+            </div>
+            <div>
+              <dt data-reply-count>0</dt>
+              <dd>owner replies</dd>
+            </div>
+            <div>
+              <dt>Vet first</dt>
+              <dd>urgent cases</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-media">
+          <img src="assets/dxcure-hero.png" alt="Pet owner caring for a dog" />
+        </div>
+      </section>
+
+      <section class="notice-band" aria-label="Health safety notice">
+        <strong>Important:</strong>
+        <span>
+          If your pet has open wounds, bleeding, swelling around the face,
+          trouble breathing, severe pain, or rapidly spreading infection, contact
+          a veterinarian immediately.
+        </span>
+      </section>
+
+      <section class="forum-shell" id="topics">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Forum topics</p>
+            <h2>Latest skin health discussions</h2>
+          </div>
+          <div class="topic-controls" aria-label="Topic filters">
+            <button class="filter-button is-active" type="button" data-filter="All">All</button>
+            <button class="filter-button" type="button" data-filter="Dogs">Dogs</button>
+            <button class="filter-button" type="button" data-filter="Cats">Cats</button>
+            <button class="filter-button" type="button" data-filter="Solved">Solved</button>
+          </div>
+        </div>
+
+        <div class="forum-layout">
+          <section class="topic-list" data-topic-list aria-live="polite"></section>
+
+          <aside class="topic-detail" data-topic-detail>
+            <div class="empty-state">
+              <p class="eyebrow">Choose a discussion</p>
+              <h3>Select a topic to read replies and add your experience.</h3>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="new-post-section" id="new-post">
+        <form class="post-form" data-post-form>
+          <div class="panel-head">
+            <p class="eyebrow">Start a discussion</p>
+            <h2>Ask the community</h2>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Your name
+              <input name="author" type="text" placeholder="Example: Aina" required />
+            </label>
+            <label>
+              Pet type
+              <select name="petType" required>
+                <option>Dog</option>
+                <option>Cat</option>
+                <option>Rabbit</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            Topic title
+            <input
+              name="title"
+              type="text"
+              placeholder="Example: Red itchy patches after grooming"
+              required
+            />
+          </label>
+
+          <label>
+            Category
+            <select name="category" required>
+              <option>Itching</option>
+              <option>Rashes</option>
+              <option>Hair loss</option>
+              <option>Allergies</option>
+              <option>Fungal concern</option>
+              <option>Vet visit preparation</option>
+            </select>
+          </label>
+
+          <label>
+            What is happening?
+            <textarea
+              name="body"
+              rows="6"
+              placeholder="Mention your pet's age, symptoms, how long it has happened, and what you have already tried."
+              required
+            ></textarea>
+          </label>
+
+          <button class="primary-button" type="submit">Post Discussion</button>
+          <output class="form-result" data-form-result></output>
+        </form>
+      </section>
+
+      <section class="guide-section" id="guide">
+        <div>
+          <p class="eyebrow">Care guide</p>
+          <h2>Helpful details to include before owners reply</h2>
+          <p>
+            Clear context helps other pet owners share more relevant experience.
+            It also gives your veterinarian a better picture if you decide to
+            book a check-up.
+          </p>
+        </div>
+        <div class="guide-list">
+          <article>
+            <strong>1</strong>
+            <h3>Describe the skin</h3>
+            <p>Note redness, flakes, smell, wet patches, bumps, wounds, or hair loss.</p>
+          </article>
+          <article>
+            <strong>2</strong>
+            <h3>Share recent changes</h3>
+            <p>Mention food, shampoo, grooming, medication, outdoor exposure, or stress.</p>
+          </article>
+          <article>
+            <strong>3</strong>
+            <h3>Track the timeline</h3>
+            <p>Say when it started, whether it spreads, and what makes it better or worse.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,206 +1,1155 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DxCure Pet Skin Forum</title>
-    <meta
-      name="description"
-      content="A simple community forum for pet owners to discuss skin disease signs, care routines, and vet visit preparation."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="top-strip">
-      <span>Pet owner community</span>
-      <span>Skin health discussions</span>
-      <span>Share experiences, not diagnoses</span>
-    </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DXCures Pet Skin Disease Forum</title>
+  <style>
+    :root {
+      --ink: #16313a;
+      --muted: #64777c;
+      --line: #dbe6e8;
+      --panel: #ffffff;
+      --soft: #f3f8f8;
+      --teal: #0e7c86;
+      --teal-dark: #095f67;
+      --sage: #7ea693;
+      --coral: #d86f5a;
+      --amber: #b9812f;
+      --blue: #407bba;
+      --shadow: 0 18px 50px rgba(22, 49, 58, .12);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="DxCure forum home">
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef5f4;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(219, 230, 232, .85);
+      background: rgba(250, 253, 252, .94);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 32px));
+      min-height: 74px;
+      margin: 0 auto;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      color: white;
+      background: linear-gradient(135deg, var(--teal), var(--sage));
+      font-weight: 800;
+      letter-spacing: 0;
+      box-shadow: 0 10px 24px rgba(14, 124, 134, .24);
+    }
+
+    .brand-name {
+      display: block;
+      font-weight: 800;
+      font-size: 1.04rem;
+    }
+
+    .brand-line {
+      display: block;
+      color: var(--muted);
+      font-size: .78rem;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      color: #50686e;
+      font-size: .92rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-button,
+    .primary-button,
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 8px;
+      min-height: 42px;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .icon-button {
+      width: 42px;
+      color: var(--teal-dark);
+      background: #e4f0ef;
+    }
+
+    .primary-button {
+      padding: 0 16px;
+      color: #fff;
+      background: var(--teal);
+      font-weight: 750;
+      box-shadow: 0 12px 28px rgba(14, 124, 134, .22);
+    }
+
+    .secondary-button {
+      padding: 0 14px;
+      color: var(--teal-dark);
+      background: #e4f0ef;
+      font-weight: 720;
+    }
+
+    .icon-button:hover,
+    .primary-button:hover,
+    .secondary-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #fbfdfc 0%, #eef5f4 100%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+      align-items: center;
+      gap: 38px;
+      width: min(1180px, calc(100% - 32px));
+      min-height: 520px;
+      margin: 0 auto;
+      padding: 44px 0 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      color: var(--teal-dark);
+      font-weight: 800;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 0 5px rgba(216, 111, 90, .13);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4.65rem);
+      line-height: .97;
+      letter-spacing: 0;
+      max-width: 740px;
+    }
+
+    .hero-copy {
+      margin: 20px 0 26px;
+      color: #4f666b;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 580px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .75);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.35;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      background: var(--panel);
+    }
+
+    .hero-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 430px;
+      object-fit: cover;
+    }
+
+    .case-strip {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .74);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 30px rgba(22, 49, 58, .14);
+    }
+
+    .case-strip b {
+      display: block;
+      font-size: .94rem;
+    }
+
+    .case-strip span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.35;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2aaf74;
+      box-shadow: 0 0 0 6px rgba(42, 175, 116, .15);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 42px;
+    }
+
+    .forum-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .toolbar {
+      margin-bottom: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 12px 34px rgba(22, 49, 58, .06);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 170px 150px 150px;
+      gap: 10px;
+    }
+
+    .field {
+      position: relative;
+    }
+
+    .field svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #769094;
+      pointer-events: none;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: #fbfdfc;
+      outline: none;
+    }
+
+    input {
+      padding: 0 12px 0 40px;
+    }
+
+    select {
+      padding: 0 34px 0 12px;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(14, 124, 134, .12);
+    }
+
+    .category-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .category-chip {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 12px;
+      color: #4f666b;
+      background: #fbfdfc;
+      cursor: pointer;
+    }
+
+    .category-chip.active {
+      border-color: var(--teal);
+      color: white;
+      background: var(--teal);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 20px 0 12px;
+    }
+
+    .section-head h2,
+    .side-panel h2 {
+      margin: 0;
+      font-size: 1.24rem;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .result-count {
+      color: var(--muted);
+      font-size: .88rem;
+      white-space: nowrap;
+    }
+
+    .thread-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .thread-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(22, 49, 58, .06);
+      overflow: hidden;
+    }
+
+    .thread-button {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      width: 100%;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border: 0;
+      color: inherit;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      color: white;
+      background: var(--teal);
+      font-weight: 850;
+      flex: 0 0 auto;
+    }
+
+    .avatar.cat {
+      background: var(--blue);
+    }
+
+    .avatar.urgent {
+      background: var(--coral);
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 7px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 0 9px;
+      color: #33545b;
+      background: #eaf2f2;
+      font-size: .75rem;
+      font-weight: 750;
+    }
+
+    .tag.hot {
+      color: #8a4334;
+      background: #f8e6e1;
+    }
+
+    .tag.watch {
+      color: #765019;
+      background: #f6ead6;
+    }
+
+    .tag.closed {
+      color: #35604f;
+      background: #e1f0e9;
+    }
+
+    .thread-title {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .thread-summary {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.5;
+    }
+
+    .thread-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 72px);
+      gap: 8px;
+      text-align: center;
+    }
+
+    .mini-stat {
+      padding: 9px 6px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdfc;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: .96rem;
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: .72rem;
+      margin-top: 2px;
+    }
+
+    .thread-preview {
+      display: none;
+      margin: 0 16px 16px 74px;
+      padding: 14px;
+      border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      color: #425d63;
+      background: #f5faf9;
+      line-height: 1.55;
+      font-size: .92rem;
+    }
+
+    .thread-card.open .thread-preview {
+      display: block;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 28px;
+      border: 1px dashed #b8c9cc;
+      border-radius: 8px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .65);
+      text-align: center;
+    }
+
+    .side-panel {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 12px 34px rgba(22, 49, 58, .07);
+      overflow: hidden;
+    }
+
+    .panel-pad {
+      padding: 18px;
+    }
+
+    .condition-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .condition {
+      padding: 12px;
+      border: 1px solid #e3ecee;
+      border-radius: 8px;
+      background: #fbfdfc;
+    }
+
+    .condition b {
+      display: block;
+      font-size: .94rem;
+    }
+
+    .condition span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .83rem;
+      line-height: 1.45;
+    }
+
+    .urgent-panel {
+      background: linear-gradient(135deg, #fff 0%, #fff6f3 100%);
+    }
+
+    .urgent-panel h2 {
+      color: #874332;
+    }
+
+    .urgent-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: #5d6668;
+      line-height: 1.65;
+      font-size: .9rem;
+    }
+
+    .activity-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.35;
+    }
+
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2aaf74;
+      box-shadow: 0 0 0 8px rgba(42, 175, 116, .12);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: #fbfdfc;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.5;
+    }
+
+    .footer-inner b {
+      color: var(--ink);
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .hero-card {
+        min-height: 360px;
+      }
+
+      .hero-card img {
+        min-height: 360px;
+      }
+
+      .forum-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .side-panel {
+        position: static;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .search-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        width: min(100% - 24px, 1180px);
+        gap: 10px;
+      }
+
+      .brand-line,
+      .nav-actions .secondary-button {
+        display: none;
+      }
+
+      .hero-inner,
+      main,
+      .footer-inner {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .hero-inner {
+        padding-top: 30px;
+      }
+
+      .hero-copy {
+        font-size: 1rem;
+      }
+
+      .hero-stats,
+      .search-row,
+      .side-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .hero-card img {
+        min-height: 300px;
+      }
+
+      .case-strip {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .thread-button {
+        grid-template-columns: 40px minmax(0, 1fr);
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+      }
+
+      .thread-stats {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .thread-preview {
+        margin-left: 16px;
+      }
+
+      .section-head,
+      .footer-inner {
+        display: block;
+      }
+
+      .result-count {
+        display: block;
+        margin-top: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#">
         <span class="brand-mark">DX</span>
         <span>
-          <strong>DxCure Forum</strong>
-          <small>Pet skin care</small>
+          <span class="brand-name">DXCures</span>
+          <span class="brand-line">Pet skin disease forum</span>
         </span>
       </a>
+      <div class="nav-links" aria-label="Forum sections">
+        <a href="#threads">Discussions</a>
+        <a href="#conditions">Conditions</a>
+        <a href="#urgent">Urgent signs</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" aria-label="Search forum">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="secondary-button" type="button">Vet-reviewed topics</button>
+      </div>
+    </nav>
+  </header>
 
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#topics">Topics</a>
-        <a href="#new-post">New Post</a>
-        <a href="#guide">Care Guide</a>
-      </nav>
-
-      <a class="header-button" href="#new-post">Start Discussion</a>
-    </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Community support for pet owners</p>
-          <h1>Discuss pet skin disease with people who understand the daily care.</h1>
-          <p>
-            Ask about symptoms, grooming routines, diet changes, clinic visits,
-            and recovery progress. This forum helps owners compare experiences
-            before speaking with a veterinarian.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-action" href="#new-post">Ask a Question</a>
-            <a class="secondary-action" href="#topics">Browse Topics</a>
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Clinic-backed community</p>
+        <h1 id="page-title">DXCures Pet Skin Disease Forum</h1>
+        <p class="hero-copy">Compare symptoms, browse condition-focused discussions, and learn what other dog and cat owners are asking before a veterinary visit. Every thread is framed as community education, not diagnosis.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#threads">Browse discussions</a>
+          <a class="secondary-button" href="#conditions">View skin conditions</a>
+        </div>
+        <div class="hero-stats" aria-label="Forum statistics">
+          <div class="stat">
+            <strong>1,248</strong>
+            <span>fictional community cases indexed</span>
           </div>
-          <dl class="hero-stats" aria-label="Forum highlights">
-            <div>
-              <dt data-topic-count>0</dt>
-              <dd>active discussions</dd>
-            </div>
-            <div>
-              <dt data-reply-count>0</dt>
-              <dd>owner replies</dd>
-            </div>
-            <div>
-              <dt>Vet first</dt>
-              <dd>urgent cases</dd>
-            </div>
-          </dl>
+          <div class="stat">
+            <strong>8</strong>
+            <span>common skin concern categories</span>
+          </div>
+          <div class="stat">
+            <strong>24h</strong>
+            <span>typical peer response window</span>
+          </div>
         </div>
-
-        <div class="hero-media">
-          <img src="assets/dxcure-hero.png" alt="Pet owner caring for a dog" />
-        </div>
-      </section>
-
-      <section class="notice-band" aria-label="Health safety notice">
-        <strong>Important:</strong>
-        <span>
-          If your pet has open wounds, bleeding, swelling around the face,
-          trouble breathing, severe pain, or rapidly spreading infection, contact
-          a veterinarian immediately.
-        </span>
-      </section>
-
-      <section class="forum-shell" id="topics">
-        <div class="section-heading">
+      </div>
+      <div class="hero-card">
+        <img src="dxcures-vet-hero.png" alt="Veterinarian gently checking a dog in a clean clinic while a cat sits nearby">
+        <div class="case-strip" aria-label="Latest forum activity">
           <div>
-            <p class="eyebrow">Forum topics</p>
-            <h2>Latest skin health discussions</h2>
+            <b>New discussion: recurring paw redness</b>
+            <span>Owners are comparing allergy logs, diet changes, and vet visit notes.</span>
           </div>
-          <div class="topic-controls" aria-label="Topic filters">
-            <button class="filter-button is-active" type="button" data-filter="All">All</button>
-            <button class="filter-button" type="button" data-filter="Dogs">Dogs</button>
-            <button class="filter-button" type="button" data-filter="Cats">Cats</button>
-            <button class="filter-button" type="button" data-filter="Solved">Solved</button>
-          </div>
+          <span class="status-dot" aria-hidden="true"></span>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="forum-layout">
-          <section class="topic-list" data-topic-list aria-live="polite"></section>
-
-          <aside class="topic-detail" data-topic-detail>
-            <div class="empty-state">
-              <p class="eyebrow">Choose a discussion</p>
-              <h3>Select a topic to read replies and add your experience.</h3>
+  <main>
+    <div class="forum-shell">
+      <section id="threads" aria-labelledby="threads-title">
+        <div class="toolbar" aria-label="Forum filters">
+          <div class="search-row">
+            <div class="field">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input id="searchInput" type="search" placeholder="Search itching, crusts, hotspots..." aria-label="Search forum discussions">
             </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="new-post-section" id="new-post">
-        <form class="post-form" data-post-form>
-          <div class="panel-head">
-            <p class="eyebrow">Start a discussion</p>
-            <h2>Ask the community</h2>
-          </div>
-
-          <div class="form-grid">
-            <label>
-              Your name
-              <input name="author" type="text" placeholder="Example: Aina" required />
-            </label>
-            <label>
-              Pet type
-              <select name="petType" required>
-                <option>Dog</option>
-                <option>Cat</option>
-                <option>Rabbit</option>
-                <option>Other</option>
-              </select>
-            </label>
-          </div>
-
-          <label>
-            Topic title
-            <input
-              name="title"
-              type="text"
-              placeholder="Example: Red itchy patches after grooming"
-              required
-            />
-          </label>
-
-          <label>
-            Category
-            <select name="category" required>
-              <option>Itching</option>
-              <option>Rashes</option>
-              <option>Hair loss</option>
-              <option>Allergies</option>
-              <option>Fungal concern</option>
-              <option>Vet visit preparation</option>
+            <select id="conditionFilter" aria-label="Filter by condition">
+              <option value="all">All conditions</option>
+              <option value="Allergies">Allergies</option>
+              <option value="Dermatitis">Dermatitis</option>
+              <option value="Hot spots">Hot spots</option>
+              <option value="Mange">Mange</option>
+              <option value="Fungal">Fungal</option>
+              <option value="Paw irritation">Paw irritation</option>
+              <option value="Hair loss">Hair loss</option>
             </select>
-          </label>
+            <select id="petFilter" aria-label="Filter by pet type">
+              <option value="all">Dogs + cats</option>
+              <option value="Dog">Dogs</option>
+              <option value="Cat">Cats</option>
+            </select>
+            <select id="urgencyFilter" aria-label="Filter by urgency">
+              <option value="all">All urgency</option>
+              <option value="Routine">Routine</option>
+              <option value="Watch">Watch</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="category-row" aria-label="Condition quick filters">
+            <button class="category-chip active" type="button" data-condition="all">All</button>
+            <button class="category-chip" type="button" data-condition="Allergies">Allergies</button>
+            <button class="category-chip" type="button" data-condition="Dermatitis">Dermatitis</button>
+            <button class="category-chip" type="button" data-condition="Hot spots">Hot spots</button>
+            <button class="category-chip" type="button" data-condition="Mange">Mange</button>
+            <button class="category-chip" type="button" data-condition="Fungal">Fungal</button>
+            <button class="category-chip" type="button" data-condition="Paw irritation">Paw irritation</button>
+            <button class="category-chip" type="button" data-condition="Hair loss">Hair loss</button>
+          </div>
+        </div>
 
-          <label>
-            What is happening?
-            <textarea
-              name="body"
-              rows="6"
-              placeholder="Mention your pet's age, symptoms, how long it has happened, and what you have already tried."
-              required
-            ></textarea>
-          </label>
+        <div class="section-head">
+          <div>
+            <h2 id="threads-title">Featured discussions</h2>
+            <p>Fictional examples of the cases DXCures members might compare and discuss.</p>
+          </div>
+          <span class="result-count" id="resultCount">8 discussions</span>
+        </div>
 
-          <button class="primary-button" type="submit">Post Discussion</button>
-          <output class="form-result" data-form-result></output>
-        </form>
+        <div class="thread-list" id="threadList">
+          <article class="thread-card" data-condition="Allergies" data-pet="Dog" data-urgency="Watch" data-search="golden retriever belly rash seasonal allergies licking scratching pollen diet">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar">D</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Dog</span><span class="tag">Allergies</span><span class="tag watch">Watch</span>
+                </span>
+                <h3 class="thread-title">Golden retriever has a recurring belly rash after park visits</h3>
+                <p class="thread-summary">Owner is tracking pollen days, shampoo changes, and whether licking increases overnight.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>18</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>142</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: compare timing, photos, flea prevention history, and diet notes before the vet visit. Members suggest asking the clinic about allergy testing rather than trying several products at once.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Hot spots" data-pet="Dog" data-urgency="Urgent" data-search="hot spot moist red patch neck collar dog sudden spreading odor painful">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar urgent">D</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Dog</span><span class="tag">Hot spots</span><span class="tag hot">Urgent</span>
+                </span>
+                <h3 class="thread-title">Moist red patch under collar appeared suddenly and is spreading</h3>
+                <p class="thread-summary">Community flags rapid spread, pain, and odor as reasons to contact a veterinarian promptly.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>31</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>286</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: keep the area from being scratched and call the vet, especially if there is discharge, strong odor, fever, or the pet seems painful.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Dermatitis" data-pet="Cat" data-urgency="Routine" data-search="cat chin acne dermatitis black specks bumps ceramic bowl cleaning">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar cat">C</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Cat</span><span class="tag">Dermatitis</span><span class="tag closed">Routine</span>
+                </span>
+                <h3 class="thread-title">Black specks and small bumps around cat's chin</h3>
+                <p class="thread-summary">Members compare bowl materials, cleaning routines, flea checks, and when chin irritation needs care.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>12</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>96</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: several owners mention switching to cleaned ceramic or stainless bowls, while still watching for swelling, pain, or spreading inflammation.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Mange" data-pet="Dog" data-urgency="Watch" data-search="mange mites hair loss elbows ears crusty skin shelter rescue dog itching">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar">D</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Dog</span><span class="tag">Mange</span><span class="tag watch">Watch</span>
+                </span>
+                <h3 class="thread-title">Rescue dog has patchy hair loss near ears and elbows</h3>
+                <p class="thread-summary">Discussion focuses on mite testing, isolation questions, and bringing shelter history to the clinic.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>22</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>211</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: members recommend a veterinary skin scrape or exam because mange-like signs can overlap with allergies, infection, and other causes of hair loss.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Fungal" data-pet="Cat" data-urgency="Watch" data-search="ringworm fungal circular bald spots kitten household cleaning contagious">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar cat">C</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Cat</span><span class="tag">Fungal</span><span class="tag watch">Watch</span>
+                </span>
+                <h3 class="thread-title">Kitten has circular bald spots and rough edges on fur</h3>
+                <p class="thread-summary">Owners discuss ringworm testing, household cleaning, and protecting other pets while waiting.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>27</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>319</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: avoid guessing from appearance alone. Members suggest confirming with a vet because fungal infections can spread between pets and people.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Paw irritation" data-pet="Dog" data-urgency="Routine" data-search="paw irritation red paws chewing yeast smell grass cleaning interdigital">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar">D</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Dog</span><span class="tag">Paw irritation</span><span class="tag closed">Routine</span>
+                </span>
+                <h3 class="thread-title">Red paws and chewing after walks on damp grass</h3>
+                <p class="thread-summary">Community compares paw rinsing, yeast-like odor, seasonal triggers, and photo logs.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>15</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>121</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: tracking walk routes, surface exposure, and odor can help the vet decide whether allergy, infection, or contact irritation is more likely.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Hair loss" data-pet="Cat" data-urgency="Routine" data-search="cat overgrooming belly hair loss stress fleas allergy symmetrical bald">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar cat">C</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Cat</span><span class="tag">Hair loss</span><span class="tag closed">Routine</span>
+                </span>
+                <h3 class="thread-title">Indoor cat is overgrooming belly fur into a smooth bald area</h3>
+                <p class="thread-summary">Members discuss stress changes, flea prevention, itch signs, and documenting grooming patterns.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>9</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>87</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: even indoor cats can have allergy or parasite-related itch, so the thread recommends a vet check if overgrooming continues.</div>
+          </article>
+
+          <article class="thread-card" data-condition="Dermatitis" data-pet="Dog" data-urgency="Urgent" data-search="dog skin folds dermatitis bulldog smell redness discharge painful urgent">
+            <button class="thread-button" type="button" aria-expanded="false">
+              <span class="avatar urgent">D</span>
+              <span>
+                <span class="meta">
+                  <span class="tag">Dog</span><span class="tag">Dermatitis</span><span class="tag hot">Urgent</span>
+                </span>
+                <h3 class="thread-title">Bulldog skin folds are red, sore, and have a strong smell</h3>
+                <p class="thread-summary">Thread highlights fold dermatitis warning signs and when discomfort needs timely treatment.</p>
+              </span>
+              <span class="thread-stats">
+                <span class="mini-stat"><strong>20</strong><span>replies</span></span>
+                <span class="mini-stat"><strong>174</strong><span>views</span></span>
+              </span>
+            </button>
+            <div class="thread-preview">Latest reply: visible soreness, odor, and discharge can mean infection. Owners suggest calling the clinic rather than using random wipes or creams.</div>
+          </article>
+        </div>
+        <div class="empty-state" id="emptyState">No matching discussions yet. Try a broader condition, pet type, or search term.</div>
       </section>
 
-      <section class="guide-section" id="guide">
-        <div>
-          <p class="eyebrow">Care guide</p>
-          <h2>Helpful details to include before owners reply</h2>
-          <p>
-            Clear context helps other pet owners share more relevant experience.
-            It also gives your veterinarian a better picture if you decide to
-            book a check-up.
-          </p>
-        </div>
-        <div class="guide-list">
-          <article>
-            <strong>1</strong>
-            <h3>Describe the skin</h3>
-            <p>Note redness, flakes, smell, wet patches, bumps, wounds, or hair loss.</p>
-          </article>
-          <article>
-            <strong>2</strong>
-            <h3>Share recent changes</h3>
-            <p>Mention food, shampoo, grooming, medication, outdoor exposure, or stress.</p>
-          </article>
-          <article>
-            <strong>3</strong>
-            <h3>Track the timeline</h3>
-            <p>Say when it started, whether it spreads, and what makes it better or worse.</p>
-          </article>
-        </div>
-      </section>
-    </main>
+      <aside class="side-panel" aria-label="Skin condition reference">
+        <section class="panel" id="conditions">
+          <div class="panel-pad">
+            <h2>Common skin conditions</h2>
+            <div class="condition-list">
+              <div class="condition">
+                <b>Allergies</b>
+                <span>Itching, redness, licking, ear irritation, or seasonal flares after food or environmental exposure.</span>
+              </div>
+              <div class="condition">
+                <b>Dermatitis</b>
+                <span>Inflamed skin that may appear red, flaky, moist, smelly, or sore around folds, belly, chin, or ears.</span>
+              </div>
+              <div class="condition">
+                <b>Hot spots</b>
+                <span>Fast-forming moist patches that can become painful, infected, and larger after scratching or chewing.</span>
+              </div>
+              <div class="condition">
+                <b>Mange</b>
+                <span>Mite-related irritation that may cause crusting, intense itch, and patchy hair loss needing vet testing.</span>
+              </div>
+              <div class="condition">
+                <b>Fungal infections</b>
+                <span>Ring-shaped bald or scaly areas can be fungal, but look-alike conditions are common.</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <script src="script.js"></script>
-  </body>
+        <section class="panel urgent-panel" id="urgent">
+          <div class="panel-pad">
+            <h2>Call a veterinarian sooner</h2>
+            <ul class="urgent-list">
+              <li>Rapid spreading redness, swelling, or pain</li>
+              <li>Open wounds, pus, bleeding, or strong odor</li>
+              <li>Fever, low energy, or appetite changes</li>
+              <li>Severe scratching, head shaking, or sudden hair loss</li>
+            </ul>
+            <div class="activity-card">
+              <span class="pulse" aria-hidden="true"></span>
+              <span>Forum posts can help organize questions, but a veterinary exam is the next step for concerning signs.</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span><b>DXCures</b> pet skin disease forum mockup</span>
+      <span>Community information is educational and not a veterinary diagnosis. Urgent symptoms should be handled by a veterinarian.</span>
+    </div>
+  </footer>
+
+  <script>
+    const searchInput = document.querySelector("#searchInput");
+    const conditionFilter = document.querySelector("#conditionFilter");
+    const petFilter = document.querySelector("#petFilter");
+    const urgencyFilter = document.querySelector("#urgencyFilter");
+    const chips = Array.from(document.querySelectorAll(".category-chip"));
+    const cards = Array.from(document.querySelectorAll(".thread-card"));
+    const resultCount = document.querySelector("#resultCount");
+    const emptyState = document.querySelector("#emptyState");
+
+    function pluralize(count) {
+      return `${count} discussion${count === 1 ? "" : "s"}`;
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      const condition = conditionFilter.value;
+      const pet = petFilter.value;
+      const urgency = urgencyFilter.value;
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const matchesQuery = !query || card.dataset.search.includes(query);
+        const matchesCondition = condition === "all" || card.dataset.condition === condition;
+        const matchesPet = pet === "all" || card.dataset.pet === pet;
+        const matchesUrgency = urgency === "all" || card.dataset.urgency === urgency;
+        const show = matchesQuery && matchesCondition && matchesPet && matchesUrgency;
+
+        card.style.display = show ? "" : "none";
+        if (show) visible += 1;
+      });
+
+      resultCount.textContent = pluralize(visible);
+      emptyState.style.display = visible ? "none" : "block";
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chips.forEach((item) => item.classList.remove("active"));
+        chip.classList.add("active");
+        conditionFilter.value = chip.dataset.condition;
+        applyFilters();
+      });
+    });
+
+    conditionFilter.addEventListener("change", () => {
+      chips.forEach((chip) => {
+        chip.classList.toggle("active", chip.dataset.condition === conditionFilter.value);
+      });
+      applyFilters();
+    });
+
+    [searchInput, petFilter, urgencyFilter].forEach((control) => {
+      control.addEventListener("input", applyFilters);
+      control.addEventListener("change", applyFilters);
+    });
+
+    cards.forEach((card) => {
+      const button = card.querySelector(".thread-button");
+      button.addEventListener("click", () => {
+        const isOpen = card.classList.toggle("open");
+        button.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+
+    applyFilters();
+  </script>
+</body>
 </html>
